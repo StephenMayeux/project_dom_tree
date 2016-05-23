@@ -25,7 +25,7 @@ class Tree
     @parser, @string = Parse.new, string
     @root = Node.new(nil, [], nil, nil, nil, nil, nil, [], nil, 0)
     create_child(@root)
-    remove_tag
+    @string = />(.*)/.match(@string)[1].strip
     @stack = [@root]
     build_tree
   end
@@ -38,16 +38,16 @@ class Tree
           child_node = Node.new(nil, [], nil, nil, nil, nil, nil, [], current_node, current_node.depth+1)
           create_child(child_node)
           current_node.children << child_node
-          remove_tag
+          @string = /(<.*)/.match(@string)[1].strip
         elsif @string[0..1] == "</"
-          remove_tag
+          @string = />(.*)/.match(@string)[1].strip
           break
         elsif @string[0..1] == "<"
           child_node = Node.new(nil, [], nil, nil, nil, nil, nil, [], current_node, current_node.depth+1)
           create_child(child_node)
           current_node.children << child_node
           @stack << child_node
-          remove_tag
+          @string = />(.*)/.match(@string)[1].strip
           build_tree
         end
       end
