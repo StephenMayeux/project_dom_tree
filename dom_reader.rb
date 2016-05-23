@@ -4,8 +4,11 @@ Node = Struct.new(:tag, :classes, :id, :name, :src, :title, :text, :children, :p
 
 class DOMReader < Tree
 
+  def initialize(html)
+    super(html)
+  end
+
   def build_tree
-    @string = File.readlines('test.html').each { |line| @string += line.strip }
     super
   end
 
