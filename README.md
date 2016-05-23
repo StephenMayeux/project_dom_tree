@@ -1,3 +1,5 @@
+Assignment Completed by [Stephen Mayeux](http://stephenmayeux.com)
+
 # project_dom_tree
 Like leaves on the wind
 
